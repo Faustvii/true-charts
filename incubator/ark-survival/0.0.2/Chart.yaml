@@ -22,7 +22,7 @@ sources:
 - https://github.com/TuRz4m/Ark-docker
 - https://hub.docker.com/r/turzam/ark
 type: application
-version: 0.0.1
+version: 0.0.2
 annotations:
   truecharts.org/catagories: |
     - games
