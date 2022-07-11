@@ -95,6 +95,55 @@ questions:
           schema:
             type: int
             default: 1000
+  - variable: persistence
+    label: "Integrated Persistent Storage"
+    description: "Integration Persistent Storage"
+    group: "Storage and Persistence"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: game
+          label: "Game storage"
+          description: "Stores the game and game configuration"
+          schema:
+            additional_attrs: true
+            type: dict
+            attrs:
+              - variable: type
+                label: "Type of storage"
+                description: "Sets the persistence type, anything other than PVC could break rollback!"
+                schema:
+                  type: string
+                  default: "simplePVC"
+                  enum:
+                    - value: "simplePVC"
+                      description: "PVC (simple)"
+                    - value: "simpleHP"
+                      description: "HostPath (simple)"
+                    - value: "pvc"
+                      description: "pvc"
+                    - value: "hostPath"
+                      description: "hostPath"
+              - variable: hostPathSimple
+                label: "hostPath"
+                description: "Path inside the container the storage is mounted"
+                schema:
+                  show_if: [["type", "=", "simpleHP"]]
+                  type: hostpath
+              - variable: hostPath
+                label: "hostPath"
+                description: "Path inside the container the storage is mounted"
+                schema:
+                  show_if: [["type", "=", "hostPath"]]
+                  type: hostpath
+              - variable: size
+                label: "Size quotum of storage"
+                schema:
+                  show_if: [["type", "=", "pvc"]]
+                  type: string
+                  default: "999Gi"
+
   - variable: service
     group: "Networking and Services"
     label: "Configure Service(s)"
