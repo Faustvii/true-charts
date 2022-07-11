@@ -1,6 +1,6 @@
 apiVersion: v2
-appVersion: "0.0.1"
-name: ark-survival
+appVersion: "1.0.0"
+name: arksurvival
 version: 0.0.1
 description: A chart for Ark - Survival Evolved server
 type: application
