@@ -34,8 +34,8 @@ questions:
       additional_attrs: true
       type: dict
       attrs:
-        - variable: RCON_PASSWORD
-          label: "RCON_PASSWORD"
+        - variable: rconPassword
+          label: "Rcon Password"
           description: "RCON password"
           schema:
             type: string
@@ -95,6 +95,12 @@ questions:
           schema:
             type: int
             default: 1000
+        - variable: maxPlayers
+          label: "Max Players"
+          description: "Maximum of players allowed online at the same time"
+          schema:
+            type: int
+            default: 70
   - variable: persistence
     label: "Integrated Persistent Storage"
     description: "Integration Persistent Storage"
