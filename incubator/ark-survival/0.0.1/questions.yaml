@@ -164,18 +164,36 @@ questions:
             type: dict
             attrs:
               - variable: main
-                label: "The game's main port"
                 schema:
                   additional_attrs: true
                   type: dict
                   attrs:
-                    - variable: port
-                      label: "Game port"
-                      description: "The port users will connect to the ark server on (TCP & UDP)"
+                    - variable: ark
+                      label: "The game's main port"
                       schema:
-                        type: int
-                        default: 7778
-                        required: true
+                        additional_attrs: true
+                        type: dict
+                        attrs:
+                          - variable: port
+                            label: "Game port"
+                            description: "The port users will connect to the ark server on (UDP)"
+                            schema:
+                              type: int
+                              default: 7778
+                              required: true
+                    - variable: arkTcp
+                      label: "The game's main port"
+                        schema:
+                          additional_attrs: true
+                          type: dict
+                          attrs:
+                            - variable: port
+                              label: "Game port"
+                              description: "The port users will connect to the ark server on (TCP)"
+                              schema:
+                                type: int
+                                default: 7778
+                                required: true
               - variable: query
                 label: "The game query port"
                 schema:
