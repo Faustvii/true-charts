@@ -25,7 +25,6 @@ groups:
     description: "Addon Configuration"
   - name: "Advanced"
     description: "Advanced Configuration"
-    
 
 questions:
   - variable: secretEnv
@@ -78,12 +77,12 @@ questions:
               - value: "CrystalIsles"
                 description: "Crystal Isles"
         - variable: TZ
-            label: "Timezone"
-            schema:
-              type: string
-              default: "Etc/UTC"
-              $ref:
-        - "definitions/timezone"
+          label: "Timezone"
+          schema:
+            type: string
+            default: "Etc/UTC"
+            $ref:
+              - "definitions/timezone"
         - variable: UID
           label: "UID"
           description: "Sets the UID env var"
@@ -124,28 +123,27 @@ questions:
                         required: true
               - variable: query
                 label: "The game query port"
-                  schema:
-                    additional_attrs: true
-                    type: dict
-                    attrs:
-                      - variable: port
-                        label: "Query port"
-                        description: "The port users will query the server ark on (TCP & UDP)"
-                        schema:
-                          type: int
-                          default: 27015
-                          required: true
-                            - variable: query
+                schema:
+                  additional_attrs: true
+                  type: dict
+                  attrs:
+                    - variable: port
+                      label: "Query port"
+                      description: "The port users will query the server ark on (TCP & UDP)"
+                      schema:
+                        type: int
+                        default: 27015
+                        required: true
               - variable: rcon
                 label: "The game rcon port"
-                  schema:
-                    additional_attrs: true
-                    type: dict
-                    attrs:
-                      - variable: port
-                        label: "rcon port"
-                        description: "The to do RCON commands on (TCP)"
-                        schema:
-                          type: int
-                          default: 32330
-                          required: true
+                schema:
+                  additional_attrs: true
+                  type: dict
+                  attrs:
+                    - variable: port
+                      label: "rcon port"
+                      description: "The to do RCON commands on (TCP)"
+                      schema:
+                        type: int
+                        default: 32330
+                        required: true
