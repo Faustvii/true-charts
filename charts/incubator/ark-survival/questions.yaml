@@ -1,0 +1,151 @@
+groups:
+  - name: "Container Image"
+    description: "Image to be used for container"
+  - name: "Controller"
+    description: "Configure workload deployment"
+  - name: "Container Configuration"
+    description: "additional container configuration"
+  - name: "App Configuration"
+    description: "App specific config options"
+  - name: "Networking and Services"
+    description: "Configure Network and Services for container"
+  - name: "Storage and Persistence"
+    description: "Persist and share data that is separate from the container"
+  - name: "Ingress"
+    description: "Ingress Configuration"
+  - name: "Security and Permissions"
+    description: "Configure security context and permissions"
+  - name: "Resources and Devices"
+    description: "Specify resources/devices to be allocated to workload"
+  - name: "Middlewares"
+    description: "Traefik Middlewares"
+  - name: "Metrics"
+    description: "Metrics"
+  - name: "Addons"
+    description: "Addon Configuration"
+  - name: "Advanced"
+    description: "Advanced Configuration"
+    
+
+questions:
+  - variable: secretEnv
+    group: "Container Configuration"
+    label: "Image Secrets"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: RCON_PASSWORD
+          label: "RCON_PASSWORD"
+          description: "RCON password"
+          schema:
+            type: string
+            private: true
+            default: "PleaseChangeMeIAmNotASecretOrSecurePassword1!"
+  - variable: env
+    group: "Container Configuration"
+    label: "Image Environment"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: TYPE
+          label: "Map"
+          description: "The ark survival map the server should run"
+          schema:
+            type: string
+            required: true
+            default: "TheIsland"
+            enum:
+              - value: "TheIsland"
+                description: "The Island"
+              - value: "TheCenter"
+                description: "The Center"
+              - value: "ScorchedEarth_P"
+                description: "Scorched Earth"
+              - value: "Ragnarok"
+                description: "Ragnarok"
+              - value: "Aberration_P"
+                description: "Aberration"
+              - value: "Extinction"
+                description: "Extinction"
+              - value: "Valguero_P"
+                description: "Valguero"
+              - value: "Genesis"
+                description: "Genisis Part 1"
+              - value: "Gen2"
+                description: "Genisis Part 2"
+              - value: "CrystalIsles"
+                description: "Crystal Isles"
+        - variable: TZ
+            label: "Timezone"
+            schema:
+              type: string
+              default: "Etc/UTC"
+              $ref:
+        - "definitions/timezone"
+        - variable: UID
+          label: "UID"
+          description: "Sets the UID env var"
+          schema:
+            type: int
+            default: 1000
+        - variable: GID
+          label: "GID"
+          description: "Sets the PGID env var"
+          schema:
+            type: int
+            default: 1000
+  - variable: service
+    group: "Networking and Services"
+    label: "Configure Service(s)"
+    schema:
+      additional_attrs: true
+      type: dict
+      attrs:
+        - variable: ports
+          label: "Service's Port(s) Configuration"
+          schema:
+            additional_attrs: true
+            type: dict
+            attrs:
+              - variable: main
+                label: "The game's main port"
+                schema:
+                  additional_attrs: true
+                  type: dict
+                  attrs:
+                    - variable: port
+                      label: "Game port"
+                      description: "The port users will connect to the ark server on (TCP & UDP)"
+                      schema:
+                        type: int
+                        default: 7778
+                        required: true
+              - variable: query
+                label: "The game query port"
+                  schema:
+                    additional_attrs: true
+                    type: dict
+                    attrs:
+                      - variable: port
+                        label: "Query port"
+                        description: "The port users will query the server ark on (TCP & UDP)"
+                        schema:
+                          type: int
+                          default: 27015
+                          required: true
+                            - variable: query
+              - variable: rcon
+                label: "The game rcon port"
+                  schema:
+                    additional_attrs: true
+                    type: dict
+                    attrs:
+                      - variable: port
+                        label: "rcon port"
+                        description: "The to do RCON commands on (TCP)"
+                        schema:
+                          type: int
+                          default: 32330
+                          required: true

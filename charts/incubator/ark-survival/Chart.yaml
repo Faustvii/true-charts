@@ -1,0 +1,22 @@
+apiVersion: v2
+name: ark-survival
+version: 0.0.1
+description: A chart for Ark - Survival Evolved server
+type: application
+appVersion: latest
+home: https://store.steampowered.com/app/346110/ARK_Survival_Evolved/
+icon: https://raw.githubusercontent.com/DrPsychick/ark-server-charts/master/charts/ark-cluster/icon.png
+keywords:
+  - ark
+  - survival
+  - evovled
+sources:
+  - https://github.com/Faustvii/charts
+maintainers:
+  - name: Faustvii
+    url: https://github.com/Faustvii
+annotations:
+  truecharts.org/catagories: |
+    - games
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U
