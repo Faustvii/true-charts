@@ -1,24 +1,28 @@
 apiVersion: v2
-appVersion: "1.0.0"
-name: arksurvival
-version: 0.0.1
-description: A chart for Ark - Survival Evolved server
-type: application
-home: https://store.steampowered.com/app/346110/ARK_Survival_Evolved/
-icon: https://raw.githubusercontent.com/DrPsychick/ark-server-charts/master/charts/ark-cluster/icon.png
+appVersion: "1.2.4"
 dependencies:
-  - name: common
-    repository: https://library-charts.truecharts.org
-    version: 10.2.1
+- name: common
+  repository: https://library-charts.truecharts.org
+  version: 10.2.1
+deprecated: false
+description: Ark Survival Evolved server
+home: https://github.com/Faustvii/true-charts/tree/master/charts/incubator/ark-survival
+icon: https://raw.githubusercontent.com/DrPsychick/ark-server-charts/master/charts/ark-cluster/icon.png
 keywords:
-  - ark
-  - survival
-  - evovled
-sources:
-  - https://github.com/Faustvii/charts
+- ark
+- survival
+- evolved
+kubeVersion: '>=1.16.0-0'
 maintainers:
-  - name: Faustvii
-    url: https://github.com/Faustvii
+- email: faust@noEmail.com
+  name: Faustvii
+  url: https://github.com/Faustvii
+name: ark-survival
+sources:
+- https://github.com/TuRz4m/Ark-docker
+- https://hub.docker.com/r/turzam/ark
+type: application
+version: 0.0.1
 annotations:
   truecharts.org/catagories: |
     - games
