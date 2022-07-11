@@ -1,11 +1,15 @@
 apiVersion: v2
+appVersion: "latest"
 name: ark-survival
 version: 0.0.1
 description: A chart for Ark - Survival Evolved server
 type: application
-appVersion: latest
 home: https://store.steampowered.com/app/346110/ARK_Survival_Evolved/
 icon: https://raw.githubusercontent.com/DrPsychick/ark-server-charts/master/charts/ark-cluster/icon.png
+dependencies:
+  - name: common
+    repository: https://library-charts.truecharts.org
+    version: 10.2.1
 keywords:
   - ark
   - survival
