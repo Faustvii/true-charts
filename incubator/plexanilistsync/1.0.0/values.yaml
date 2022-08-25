@@ -1,0 +1,19 @@
+image:
+  repository: ghcr.io/faustvii/plexanilistsync
+  pullPolicy: IfNotPresent
+  tag: v1.0.0@sha256:a6c54d7d306a303a7c0539a9efc3da9bc4ce6059bafb7077e5089bb6679b19df
+
+service:
+  main:
+    ports:
+      main:
+        port: 40001
+        targetPort: 80
+
+persistence:
+  config:
+    enabled: true
+    mountPath: "/app/appsettings.json"
+
+portal:
+  enabled: true
