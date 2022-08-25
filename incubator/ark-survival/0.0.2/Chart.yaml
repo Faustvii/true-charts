@@ -3,7 +3,7 @@ appVersion: "1.2.4"
 dependencies:
 - name: common
   repository: https://library-charts.truecharts.org
-  version: 10.2.1
+  version: 10.5.1
 deprecated: false
 description: Ark Survival Evolved server
 home: https://github.com/Faustvii/true-charts/tree/master/charts/incubator/ark-survival
