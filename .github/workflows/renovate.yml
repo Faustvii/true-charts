@@ -17,5 +17,3 @@ jobs:
         with:
           configurationFile: renovate.json
           token: ${{ secrets.BOT_TOKEN }}
-        env:
-          LOG_LEVEL: 'debug'
