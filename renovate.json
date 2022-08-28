@@ -3,12 +3,18 @@
     "extends": [
         "config:base"
     ],
+    "enabledManagers": [
+        "helmv3",
+        "helm-values"
+    ],
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
         "^\\.\/tools\/bumpAppversion.sh.*"
     ],
     "platform": "github",
-    "repositories": ["faustvii/true-charts"],
+    "repositories": [
+        "faustvii/true-charts"
+    ],
     "postUpgradeTasks": {
         "commands": [
             "./tools/bumpAppversion.sh {{{packageFile}} {{{newVersion}}}"
@@ -19,17 +25,17 @@
     },
     "packageRules": [
         {
-          "description": "lockFileMaintenance",
-          "matchUpdateTypes": [
-            "pin",
-            "digest",
-            "patch",
-            "minor",
-            "major",
-            "lockFileMaintenance"
-          ],
-          "dependencyDashboardApproval": false,
-          "stabilityDays": 0
+            "description": "lockFileMaintenance",
+            "matchUpdateTypes": [
+                "pin",
+                "digest",
+                "patch",
+                "minor",
+                "major",
+                "lockFileMaintenance"
+            ],
+            "dependencyDashboardApproval": false,
+            "stabilityDays": 0
         }
-      ]
+    ]
 }
