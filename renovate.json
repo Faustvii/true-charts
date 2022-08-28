@@ -5,7 +5,7 @@
     ],
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-        "^./tools/bumpAppversion.sh"
+        "^\\.\/tools\/bumpAppversion.sh.*"
     ],
     "postUpgradeTasks": {
         "commands": [
