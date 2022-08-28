@@ -7,11 +7,10 @@
         "helmv3",
         "helm-values"
     ],
-    "username": "renovate-release",
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-        "^echo",
+        "^echo.*",
         "^\\.\/tools\/bumpAppversion.sh.*"
     ],
     "platform": "github",
