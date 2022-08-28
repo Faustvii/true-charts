@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
-set -eu
+# set -eu
 
 # $1 path to chart if one chart only
 # $2 new version
 
-chart=${1}
-version=${2}
+type=${1}
+chart=${2}
+version=${3}
 
-echo "chart "${chart}" is being updated to "${version}""
+echo "chart "${type}" "${chart}" is being updated to "${version}""
 
-sed -i "s|^appVersion:.*|appVersion: \"${version}\"|g" ${chart}
+if [ -d "${chart}" ]; then
+    if [ -z "$version" ];
+    then
+        echo "empty version"
+    else
+        sed -i "s|^appVersion:.*|appVersion: \"${version}\"|g" ${chart}/Chart.yaml
+  fi
+fi

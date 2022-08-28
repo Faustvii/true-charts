@@ -19,8 +19,8 @@
     ],
     "postUpgradeTasks": {
         "commands": [
-            "echo {{{packageFile}}} {{{newVersion}}}",
-            "./tools/bumpAppversion.sh {{{packageFile}}} {{{newVersion}}}"
+            "echo {{{updateType}}} {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}",
+            "./tools/bumpAppversion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
         ],
         "fileFilters": [
             "**/*.yaml"
