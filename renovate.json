@@ -9,6 +9,7 @@
     ],
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
+        "^echo",
         "^\\.\/tools\/bumpAppversion.sh.*"
     ],
     "platform": "github",
@@ -17,6 +18,7 @@
     ],
     "postUpgradeTasks": {
         "commands": [
+            "echo {{{packageFile}}} {{{newVersion}}}",
             "./tools/bumpAppversion.sh {{{packageFile}}} {{{newVersion}}}"
         ],
         "fileFilters": [
