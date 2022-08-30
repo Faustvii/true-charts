@@ -13,8 +13,7 @@
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-        "^\\.\/tools\/bumpAppversion.sh.*",
-        "^\\.\/tools\/bumpVersion.sh.*"
+        "^\\.\/tools\/bumpAppversion.sh.*"
     ],
     "platform": "github",
     "repositories": [
@@ -22,8 +21,7 @@
     ],
     "postUpgradeTasks": {
         "commands": [
-            "./tools/bumpAppversion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}",
-            "./tools/bumpVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
+            "./tools/bumpAppversion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
         ],
         "fileFilters": [
             "**/**/**/values.yaml"
@@ -47,7 +45,22 @@
             "matchDatasources": [
                 "docker"
             ],
-            "matchManagers": ["helm-values"],
+            "updateTypes": [
+                "major"
+            ],
+            "bumpVersion": "major"
+        },
+        {
+            "matchDatasources": [
+                "docker"
+            ],
+            "matchUpdateTypes": [
+                "minor",
+                "patch",
+                "digest",
+                "pin"
+            ],
+            "bumpVersion": "patch",
             "automerge": true
         }
     ]
