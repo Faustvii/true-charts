@@ -49,6 +49,7 @@ jobs:
             fi
             echo "Comparing versions for ${train}/${chart}"
             master=$(cat ./master/${train}/${chart}/Chart.yaml | grep "^version: ")
+            master=${master#version: }
             current=$(cat ./${train}/${chart}/Chart.yaml | grep "^version: ")
             current=${current#version: }
             echo "master version: ${master}"
