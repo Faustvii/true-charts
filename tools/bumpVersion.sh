@@ -49,7 +49,7 @@ if [ -d "${chart}" ]; then
     then
         echo "empty version"
     else
-        version=$(echo -n $current)
+        version=$(echo -n $version)
         version=$(incr_semver "${version}" "${type}")
         echo "ver: "${version}""
         DIR="${chart%/*}"/"${version}"

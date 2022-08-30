@@ -16,6 +16,5 @@ if [ -d "${chart}" ]; then
         echo "empty version"
     else
         sed -i "s|^appVersion:.*|appVersion: \"${version}\"|g" ${chart}/Chart.yaml
-        git add ${chart}/Chart.yaml
   fi
 fi

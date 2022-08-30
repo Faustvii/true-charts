@@ -24,6 +24,9 @@
     "postUpgradeTasks": {
         "commands": [
             "./tools/bumpAppVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
+        ],
+        "fileFilters": [
+            "**/**.yaml"
         ]
     },
     "packageRules": [
