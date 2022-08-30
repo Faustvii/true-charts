@@ -5,18 +5,16 @@
         "helpers:pinGitHubActionDigests"
     ],
     "enabledManagers": [
-        "helmv3",
         "helm-values"
     ],
     "suppressNotifications": [
         "prIgnoreNotification"
     ],
     "pinDigests": true,
-    "timezone":"Europe/Copenhagen",
+    "timezone": "Europe/Copenhagen",
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-        "^\\.\/tools\/bumpAppversion.sh.*",
         "^\\.\/tools\/bumpVersion.sh.*"
     ],
     "platform": "github",
@@ -25,7 +23,6 @@
     ],
     "postUpgradeTasks": {
         "commands": [
-            "./tools/bumpAppversion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}",
             "./tools/bumpVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
         ],
         "fileFilters": [
@@ -33,15 +30,6 @@
         ]
     },
     "packageRules": [
-        {
-            "datasources": [
-                "helm"
-            ],
-            "matchManagers": [
-                "helmv3"
-            ],
-            "commitMessageTopic": "Helm chart {{depName}}"
-        },
         {
             "datasources": [
                 "docker"
@@ -67,14 +55,18 @@
             "updateTypes": [
                 "major"
             ],
-            "labels": ["update/major"],
+            "labels": [
+                "update/major"
+            ],
             "bumpVersion": "major"
         },
         {
             "matchDatasources": [
                 "docker"
             ],
-            "labels": ["update/minor"],
+            "labels": [
+                "update/minor"
+            ],
             "matchUpdateTypes": [
                 "minor",
                 "patch",
