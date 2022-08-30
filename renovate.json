@@ -15,7 +15,8 @@
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-        "^\\.\/tools\/bumpVersion.sh.*"
+        "^\\.\/tools\/bumpVersion.sh.*",
+        "git.*"
     ],
     "platform": "github",
     "repositories": [
@@ -23,7 +24,8 @@
     ],
     "postUpgradeTasks": {
         "commands": [
-            "./tools/bumpVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
+            "./tools/bumpVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}",
+            "git add ."
         ]
     },
     "packageRules": [
