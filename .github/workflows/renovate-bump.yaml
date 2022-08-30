@@ -48,15 +48,16 @@ jobs:
               train="incubator"
             fi
             echo "Comparing versions for ${train}/${chart}"
-            master=$(cat ./master/${train}/${chart}/Chart.yaml | grep "^version")
-            current=$(cat ./${train}/${chart}/Chart.yaml | grep "^version")
+            master=$(cat ./master/${train}/${chart}/Chart.yaml | grep "^version: ")
+            current=$(cat ./${train}/${chart}/Chart.yaml | grep "^version: ")
+            current=${current#version: }
             echo "master version: ${master}"
             echo "current version: ${current}"
             if [[ "${master}" != "${current}" ]]; then
               echo "Version does not have to be bumped"
             else
-              echo "Bumping patch version for ${train}/${chart}"
-              ./tools/bumpVersion.sh patch ./${train}/${chart} ${current#version:}
+              echo "Bumping patch version for ${train}/${chart}/${current}"
+              ./tools/bumpVersion.sh patch ./${train}/${chart} ${current}
             fi
           done
       - name: Cleanup
