@@ -5,7 +5,7 @@ dependencies:
     repository: https://library-charts.truecharts.org
     version: 10.5.0
 deprecated: false
-description: Plex Anilist Sync is a API that accepts Tautulli webhooks and updates a Anilist user watched shows.X
+description: Plex Anilist Sync is a API that accepts Tautulli webhooks and updates a Anilist user watched shows.
 home: https://truecharts.org/docs/charts/stable/bazarr
 icon: https://truecharts.org/img/hotlink-ok/chart-icons/bazarr.png
 keywords:
