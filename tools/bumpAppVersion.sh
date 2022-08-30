@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# set -eu
+set -eu
 
 # $1 path to chart if one chart only
 # $2 new version
