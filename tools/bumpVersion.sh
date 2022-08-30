@@ -21,7 +21,6 @@ function incr_semver() {
     patch=${ver[2]}
     minor=${ver[1]}
     major=${ver[0]}
-    echo "$major.$minor.$patch"
 
     case $level in
         patch)
@@ -50,6 +49,7 @@ if [ -d "${chart}" ]; then
     then
         echo "empty version"
     else
+        version=$(echo -n $current)
         version=$(incr_semver "${version}" "${type}")
         echo "ver: "${version}""
         DIR="${chart%/*}"/"${version}"
