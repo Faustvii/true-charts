@@ -13,10 +13,19 @@
     "pinDigests": true,
     "timezone": "Europe/Copenhagen",
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
+    "allowPostUpgradeCommandTemplating": true,
+    "allowedPostUpgradeCommands": [
+        "^\\.\/tools\/bumpAppVersion.sh.*"
+    ],
     "platform": "github",
     "repositories": [
         "faustvii/true-charts"
     ],
+    "postUpgradeTasks": {
+        "commands": [
+            "./tools/bumpAppVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
+        ]
+    },
     "packageRules": [
         {
             "datasources": [
