@@ -17,7 +17,7 @@ if [ -d "${chart}" ]; then
         echo "empty version"
     else
         DIR=${chart%/*}/${version}
-        cp -rf $chart/ ${DIR}
+        mv -v $chart ${DIR}
         sed -i "s|^appVersion:.*|appVersion: \"${version}\"|g" ${DIR}/Chart.yaml
         sed -i "s|^version:.*|version: ${version}|g" ${DIR}/Chart.yaml
         cat ${DIR}/Chart.yaml | grep "^appVersion:"

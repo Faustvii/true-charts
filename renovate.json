@@ -15,7 +15,7 @@
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-
+        "^\\.\/tools\/bumpVersion.sh.*"
     ],
     "platform": "github",
     "repositories": [
@@ -24,9 +24,6 @@
     "postUpgradeTasks": {
         "commands": [
             "./tools/bumpVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
-        ],
-        "fileFilters": [
-            "**/values.yaml"
         ]
     },
     "packageRules": [
