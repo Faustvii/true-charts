@@ -7,11 +7,12 @@
         "helmv3",
         "helm-values"
     ],
+    "suppressNotifications": ["prIgnoreNotification"],
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-        "^echo.*",
-        "^\\.\/tools\/bumpAppversion.sh.*"
+        "^\\.\/tools\/bumpAppversion.sh.*",
+        "^\\.\/tools\/bumpVersion.sh.*"
     ],
     "platform": "github",
     "repositories": [
@@ -19,8 +20,8 @@
     ],
     "postUpgradeTasks": {
         "commands": [
-            "echo {{{updateType}}} {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}",
-            "./tools/bumpAppversion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
+            "./tools/bumpAppversion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}",
+            "./tools/bumpVersion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
         ],
         "fileFilters": [
             "**/*.yaml"

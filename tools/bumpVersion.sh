@@ -9,13 +9,15 @@ type=${1}
 chart=${2}
 version=${3}
 
-echo "chart "${type}" "${chart}" is being updated to app version "${version}""
+echo "chart "${type}" "${chart}" is being updated to version "${version}""
 
 if [ -d "${chart}" ]; then
     if [ -z "$version" ];
     then
         echo "empty version"
     else
-        sed -i "s|^appVersion:.*|appVersion: \"${version}\"|g" ${chart}/Chart.yaml
+        sed -i "s|^version:.*|version: \"${version}\"|g" ${chart}/Chart.yaml
+        DIR=${chart%/*}
+        mv $chart ${DIR}/${version}
   fi
 fi
