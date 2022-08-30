@@ -15,7 +15,7 @@
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
-        "^\\.\/tools\/bumpVersion.sh.*"
+
     ],
     "platform": "github",
     "repositories": [
@@ -72,8 +72,7 @@
                 "patch",
                 "digest"
             ],
-            "bumpVersion": "patch",
-            "automerge": true
+            "bumpVersion": "patch"
         }
     ]
 }
