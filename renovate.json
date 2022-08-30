@@ -28,7 +28,7 @@
             "./tools/bumpAppversion.sh {{{manager}}} {{{packageFileDir}}} {{{newVersion}}}"
         ],
         "fileFilters": [
-            "**/**/**/values.yaml"
+            "values.yaml"
         ]
     },
     "packageRules": [
