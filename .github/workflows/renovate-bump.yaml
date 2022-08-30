@@ -57,8 +57,8 @@ jobs:
             if [[ "${master}" != "${current}" ]]; then
               echo "Version does not have to be bumped"
             else
-              echo "Bumping patch version for ${train}/${chart}/${current}"
-              ./tools/bumpVersion.sh patch ./${train}/${chart} ${current}
+              echo "Bumping version for ${train}/${chart}"
+              ./tools/bumpVersion.sh chart ./${train}/${chart} "${current}"
             fi
           done
       - name: Cleanup
@@ -70,5 +70,5 @@ jobs:
           git config user.name "Renovate Bot"
           git config user.email "<bot@renovateapp.com>"
           git add --all
-          git commit -sm "Commit bumped Chart Version" || exit 0
+          git commit -sm "Commit bumped Chart Version [skip ci]" || exit 0
           git push
