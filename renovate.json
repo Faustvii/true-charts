@@ -48,6 +48,7 @@
             "matchDatasources": [
                 "docker"
             ],
+            "matchManagers": ["helm-values"],
             "automerge": true
         }
     ]
