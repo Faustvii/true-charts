@@ -1,7 +1,8 @@
 {
     "$schema": "https://docs.renovatebot.com/renovate-schema.json",
     "extends": [
-        "config:base"
+        "config:base",
+        "helpers:pinGitHubActionDigests"
     ],
     "enabledManagers": [
         "helmv3",
@@ -10,6 +11,9 @@
     "suppressNotifications": [
         "prIgnoreNotification"
     ],
+    "rebaseWhen": "conflicted",
+    "pinDigests": true,
+    "timezone":"Europe/Copenhagen",
     "gitAuthor": "Renovate Bot <bot@renovateapp.com>",
     "allowPostUpgradeCommandTemplating": true,
     "allowedPostUpgradeCommands": [
@@ -29,17 +33,31 @@
     },
     "packageRules": [
         {
-            "description": "lockFileMaintenance",
-            "matchUpdateTypes": [
-                "pin",
-                "digest",
-                "patch",
-                "minor",
-                "major",
-                "lockFileMaintenance"
+            "datasources": [
+                "helm"
             ],
-            "dependencyDashboardApproval": false,
-            "stabilityDays": 0
+            "matchManagers": [
+                "helmv3"
+            ],
+            "commitMessageTopic": "Helm chart {{depName}}"
+        },
+        {
+            "datasources": [
+                "docker"
+            ],
+            "matchManagers": [
+                "helm-values"
+            ],
+            "enabled": true,
+            "pinDigests": true,
+            "commitMessageTopic": "container image {{depName}}",
+            "commitMessageExtra": "to {{#if isSingleVersion}}v{{{newVersion}}}{{else}}{{{newValue}}}{{/if}}",
+            "matchUpdateTypes": [
+                "major",
+                "minor",
+                "patch",
+                "digest"
+            ]
         },
         {
             "matchDatasources": [
@@ -48,17 +66,18 @@
             "updateTypes": [
                 "major"
             ],
+            "labels": ["update/major"],
             "bumpVersion": "major"
         },
         {
             "matchDatasources": [
                 "docker"
             ],
+            "labels": ["update/minor"],
             "matchUpdateTypes": [
                 "minor",
                 "patch",
-                "digest",
-                "pin"
+                "digest"
             ],
             "bumpVersion": "patch",
             "automerge": true
