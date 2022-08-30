@@ -16,7 +16,7 @@ if [ -d "${chart}" ]; then
     then
         echo "empty version"
     else
-        sed -i "s|^version:.*|version: \"${version}\"|g" ${chart}/Chart.yaml
+        sed -i "s|^version:.*|version: ${version}|g" ${chart}/Chart.yaml
         DIR=${chart%/*}
         mv $chart ${DIR}/${version}
   fi
