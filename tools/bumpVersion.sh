@@ -18,6 +18,7 @@ if [ -d "${chart}" ]; then
     else
         sed -i "s|^version:.*|version: ${version}|g" ${chart}/Chart.yaml
         DIR=${chart%/*}
-        mv $chart ${DIR}/${version}
+        rm -r ${DIR}/${version}
+        mv -v $chart ${DIR}/${version}
   fi
 fi
