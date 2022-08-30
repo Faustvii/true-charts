@@ -52,8 +52,8 @@ jobs:
             master=${master#version: }
             current=$(cat ./${train}/${chart}/Chart.yaml | grep "^version: ")
             current=${current#version: }
-            echo "master version: ${master}"
-            echo "current version: ${current}"
+            echo "master version: '${master}'"
+            echo "current version: '${current}'"
             if [[ "${master}" != "${current}" ]]; then
               echo "Version does not have to be bumped"
             else
