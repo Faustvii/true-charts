@@ -5,16 +5,13 @@ set -eu
 # $1 - semver string
 # $2 - level to incr {patch,minor,major} - patch by default
 function incr_semver() {
-    echo $1
     IFS='.' read -ra ver <<< "$1"
     [[ "${#ver[@]}" -ne 3 ]] && echo "Invalid semver string" && return 1
     [[ "$#" -eq 1 ]] && level='patch' || level=$2
-    echo "hello"
+
     patch=${ver[2]}
     minor=${ver[1]}
     major=${ver[0]}
-    echo "hello world\n"
-    echo "$major.$minor.$patch"
 
     case $level in
         patch)
