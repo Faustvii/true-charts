@@ -77,4 +77,4 @@ jobs:
 
       - name: Run chart-testing (install)
         if: steps.filter.outputs.changed == 'true'
-        run: ct install --config .github/ct-config.yaml --debug --build-id ${{ github.run_number }} --namespace chart-${{ github.run_number }} --release-label release-${{ github.run_number }} --chart-dirs ${{steps.changed-charts.outputs.charts}}
+        run: ct install --config .github/ct-config.yaml --print-config --debug helm-extra-set-args "--set name=release-${{ github.run_number }}" --build-id ${{ github.run_number }} --namespace chart-${{ github.run_number }} --release-label release-${{ github.run_number }} --chart-dirs ${{steps.changed-charts.outputs.charts}}
