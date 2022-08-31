@@ -30,20 +30,36 @@ jobs:
       - name: Set up chart-testing
         uses: helm/chart-testing-action@v2.2.1
 
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          list-files: json
+          filters: |
+            changed:
+            - 'stable/**'
+
+      - name: Filter filter-output
+        run: echo '${{ toJson(steps.filter.outputs) }}' > changes.json
+      - name: Bump
+        id: changed-charts
+        run: |
+          APPS=$(jq --raw-output '.changed_files | fromjson | .[] |= sub("(?<filepath>(?<first_directory>(?<root1>[\/]?)[^\/]+\/)(?<second_directory>(?<root2>[\/]?)[^\/]+\/)(?<third_directory>(?<root3>[\/]?)[^\/]+)(?<extra_paths>.+))"; "\(.second_directory)\(.third_directory)") | unique' changes.json  |  jq -r '.[]')
+          echo "::set-output name=charts::${APPS[*]}"
+
       - name: Run chart-testing (list-changed)
         id: list-changed
         run: |
-          changed=$(ct list-changed --chart-dirs 'stable/**' --target-branch ${{ github.event.repository.default_branch }})
+          changed=$(ct list-changed --chart-dirs ${{steps.changed-charts.outputs.charts}} --target-branch ${{ github.event.repository.default_branch }})
           if [[ -n "$changed" ]]; then
             echo "::set-output name=changed::true"
           fi
 
       - name: Run chart-testing (lint)
-        run: ct lint --chart-dirs 'stable/**' --target-branch ${{ github.event.repository.default_branch }}
+        run: ct lint --chart-dirs ${{steps.changed-charts.outputs.charts}} --target-branch ${{ github.event.repository.default_branch }}
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
         if: steps.list-changed.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
-        run: ct install --chart-dirs 'stable/**'
+        run: ct install --chart-dirs ${{steps.changed-charts.outputs.charts}}
