@@ -39,7 +39,7 @@ jobs:
 
       - name: Set up chart-testing
         if: steps.filter.outputs.changed == 'true'
-        uses: helm/chart-testing-action@v2.2.1
+        uses: helm/chart-testing-action@v2.3.0
 
       - name: Filter changed files
         if: steps.filter.outputs.changed == 'true'
@@ -77,4 +77,4 @@ jobs:
 
       - name: Run chart-testing (install)
         if: steps.filter.outputs.changed == 'true'
-        run: ct install --config .github/ct-config.yaml --print-config --debug --helm-extra-set-args "--set name=release-${{ github.run_number }}" --build-id ${{ github.run_number }} --namespace chart-${{ github.run_number }} --release-label release-${{ github.run_number }} --chart-dirs ${{steps.changed-charts.outputs.charts}}
+        run: ct install --config .github/ct-config.yaml --print-config --debug --helm-extra-args "--name=release-${{ github.run_number }}" --build-id ${{ github.run_number }} --namespace chart-${{ github.run_number }} --release-label release-${{ github.run_number }} --chart-dirs ${{steps.changed-charts.outputs.charts}}
