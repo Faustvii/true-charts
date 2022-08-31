@@ -7,16 +7,11 @@ on:
     tags-ignore:
       - "**"
 
-env:
-  test: ${{github.event.head_commit.message}}
-
 jobs:
   self-commit:
     name: Self commit
-    if: contains('[no bump]', ${{ message }} ) == false
+    if: contains('[no bump]', github.event.head_commit.message ) == false
     runs-on: ubuntu-20.04
-    env:
-      message: ${{github.event.head_commit.message}}
     steps:
       - run: |
           echo "triggered"
