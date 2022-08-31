@@ -8,7 +8,19 @@ on:
       - "**"
 
 jobs:
+  self-commit:
+    name: Self commit
+    if: contains("[no bump]", message ) == false
+    runs-on: ubuntu-20.04
+    env:
+      message: ${{github.event.head_commit.message}}
+    steps:
+      - run: |
+          echo "triggered"
+          echo ${message}
+
   renovate-bump:
+    needs: self-commit
     name: Get changed Apps
     runs-on: ubuntu-20.04
     steps:
@@ -70,5 +82,5 @@ jobs:
           git config user.name "Renovate Bot"
           git config user.email "<bot@renovateapp.com>"
           git add --all
-          git commit -sm "Commit bumped Chart Version" || exit 0
+          git commit -sm "Commit bumped Chart Version [no bump]" || exit 0
           git push
