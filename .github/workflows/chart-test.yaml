@@ -1,6 +1,12 @@
 name: Lint and Test Charts
 
-on: pull_request
+on:
+  push:
+    branches:
+      - "renovate/**"
+    tags-ignore:
+      - "**"
+  pull_request:
 
 jobs:
   lint-test:
