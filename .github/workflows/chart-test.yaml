@@ -73,4 +73,4 @@ jobs:
 
       - name: Run chart-testing (install)
         if: steps.filter.outputs.changed == 'true'
-        run: ct install --config .github/ct-config.yaml --build-id ${{ github.run_number }} --chart-dirs ${{steps.changed-charts.outputs.charts}}
+        run: ct install --config .github/ct-config.yaml --build-id ${{ github.run_number }} --namespace chart-${{ github.run_number }} --chart-dirs ${{steps.changed-charts.outputs.charts}}
