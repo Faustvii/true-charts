@@ -1,0 +1,32 @@
+apiVersion: v2
+appVersion: "3.0.1"
+dependencies:
+  - name: common
+    repository: https://library-charts.truecharts.org
+    version: 10.5.0
+deprecated: false
+description: Plex Anilist Sync is a API that accepts Tautulli webhooks and updates a Anilist user watched shows.
+home: https://truecharts.org/docs/charts/stable/bazarr
+icon: https://truecharts.org/img/hotlink-ok/chart-icons/bazarr.png
+keywords:
+  - plex
+  - anilist
+  - sync
+  - tautulli
+kubeVersion: ">=1.16.0-0"
+maintainers:
+  - email: info@truecharts.org
+    name: TrueCharts
+    url: https://truecharts.org
+name: plexanilistsync
+sources:
+  - https://github.com/Faustvii/true-charts/master/charts/incubator/plexanilistsync
+  - https://github.com/Faustvii/PlexAniListSync
+  - https://ghcr.io/faustvii/plexanilistsync
+type: application
+version: 1.0.2
+annotations:
+  truecharts.org/catagories: |
+    - media
+  truecharts.org/SCALE-support: "true"
+  truecharts.org/grade: U
