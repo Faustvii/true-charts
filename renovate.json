@@ -72,7 +72,8 @@
                 "patch",
                 "digest"
             ],
-            "bumpVersion": "patch"
+            "bumpVersion": "patch",
+            "automerge": true
         }
     ]
 }
