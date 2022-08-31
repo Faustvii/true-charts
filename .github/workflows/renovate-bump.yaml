@@ -83,5 +83,5 @@ jobs:
           git config user.name "Renovate Bot"
           git config user.email "<bot@renovateapp.com>"
           git add --all
-          git commit -sm "Commit bumped Chart Version [no bump]" || exit 0
+          git commit -sm "chore(chart): bumped chart version [no bump]" || exit 0
           git push
