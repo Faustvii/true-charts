@@ -10,7 +10,7 @@ on:
 jobs:
   self-commit:
     name: Self commit
-    if: (!contains('[no bump]', github.event.head_commit.message ))
+    if: "!contains('[no bump]', github.event.head_commit.message )"
     runs-on: ubuntu-20.04
     env:
       message: ${{ github.event.head_commit.message }}
