@@ -73,7 +73,9 @@
                 "digest"
             ],
             "bumpVersion": "patch",
-            "automerge": true
+            "automerge": true,
+            "automergeType": "pr",
+            "platformAutomerge": true
         }
     ]
 }
