@@ -71,6 +71,10 @@ jobs:
         uses: helm/kind-action@v1.2.0
         if: steps.filter.outputs.changed == 'true'
 
+      - name: Create namespace
+        run: kubectl create namespace chart-${{ github.run_number }}
+        if: steps.filter.outputs.changed == 'true'
+
       - name: Run chart-testing (install)
         if: steps.filter.outputs.changed == 'true'
         run: ct install --config .github/ct-config.yaml --build-id ${{ github.run_number }} --namespace chart-${{ github.run_number }}  --release-label release-${{ github.run_number }} --chart-dirs ${{steps.changed-charts.outputs.charts}}
