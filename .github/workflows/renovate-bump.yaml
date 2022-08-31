@@ -70,5 +70,5 @@ jobs:
           git config user.name "Renovate Bot"
           git config user.email "<bot@renovateapp.com>"
           git add --all
-          git commit -sm "Commit bumped Chart Version [skip ci]" || exit 0
+          git commit -sm "Commit bumped Chart Version" || exit 0
           git push

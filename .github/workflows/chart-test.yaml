@@ -18,18 +18,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.9.2
-
-      - uses: actions/setup-python@v2
-        with:
-          python-version: 3.7
-
-      - name: Set up chart-testing
-        uses: helm/chart-testing-action@v2.2.1
-
       - uses: dorny/paths-filter@v2
         id: filter
         with:
@@ -38,9 +26,27 @@ jobs:
             changed:
             - 'stable/**'
 
-      - name: Filter filter-output
+      - name: Set up Helm
+        uses: azure/setup-helm@v1
+        if: steps.filter.outputs.changed == 'true'
+        with:
+          version: v3.9.2
+
+      - uses: actions/setup-python@v2
+        if: steps.filter.outputs.changed == 'true'
+        with:
+          python-version: 3.7
+
+      - name: Set up chart-testing
+        if: steps.filter.outputs.changed == 'true'
+        uses: helm/chart-testing-action@v2.2.1
+
+      - name: Filter changed files
+        if: steps.filter.outputs.changed == 'true'
         run: echo '${{ toJson(steps.filter.outputs) }}' > changes.json
-      - name: Bump
+
+      - name: Changed charts
+        if: steps.filter.outputs.changed == 'true'
         id: changed-charts
         run: |
           APPS=$(jq --raw-output '.changed_files | fromjson | .[] |= sub("(?<filepath>(?<first_directory>(?<root1>[\/]?)[^\/]+\/)(?<second_directory>(?<root2>[\/]?)[^\/]+\/)(?<third_directory>(?<root3>[\/]?)[^\/]+)(?<extra_paths>.+))"; "\(.first_directory)\(.second_directory)") | unique' changes.json  |  jq -r '.[]')
@@ -49,6 +55,7 @@ jobs:
           echo "::set-output name=charts::${APPS[*]}"
 
       - name: Run chart-testing (list-changed)
+        if: steps.filter.outputs.changed == 'true'
         id: list-changed
         run: |
           changed=$(ct list-changed --chart-dirs ${{steps.changed-charts.outputs.charts}} --target-branch ${{ github.event.repository.default_branch }})
@@ -57,11 +64,13 @@ jobs:
           fi
 
       - name: Run chart-testing (lint)
+        if: steps.filter.outputs.changed == 'true'
         run: ct lint --chart-dirs ${{steps.changed-charts.outputs.charts}} --target-branch ${{ github.event.repository.default_branch }}
 
       - name: Create kind cluster
         uses: helm/kind-action@v1.2.0
-        if: steps.list-changed.outputs.changed == 'true'
+        if: steps.filter.outputs.changed == 'true'
 
       - name: Run chart-testing (install)
+        if: steps.filter.outputs.changed == 'true'
         run: ct install --chart-dirs ${{steps.changed-charts.outputs.charts}}
