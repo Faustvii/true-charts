@@ -1,7 +1,7 @@
 image:
   repository: ghcr.io/faustvii/plexanilistsync
   pullPolicy: IfNotPresent
-  tag: 3.1.4@sha256:d80819df938699d675fa3e90f1e6413e4566d310b9a9388d128e11272e17df33
+  tag: 3.2.0@sha256:cb08aaf209fbeb88db19348eaedda4e6c5b37a1b17f55904cadfe1c0a2ebb457
 
 service:
   main:
