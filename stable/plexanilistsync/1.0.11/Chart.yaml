@@ -24,7 +24,7 @@ sources:
   - https://github.com/Faustvii/PlexAniListSync
   - https://ghcr.io/faustvii/plexanilistsync
 type: application
-version: 1.0.10
+version: 1.0.11
 annotations:
   truecharts.org/catagories: |
     - media
